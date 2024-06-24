@@ -8,12 +8,10 @@ use Illuminate\View\Component;
 use App\Models\Menu;
 class MainMenu extends Component
 {
-    /**
-     * Create a new component instance.
-     */
+    
     public function __construct()
     {
-        //
+       
     }
 
     /**
@@ -21,8 +19,13 @@ class MainMenu extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.main-menu');
-        // $listmenu=Menu::get();
-        // return view('components.main-menu',compact('listmenu'));
+        //return view('components.main-menu');
+        $args1=[
+            ['status','=',1],
+            ['position','=','mainmenu'],
+            ['parent_id','=',0],
+        ];
+         $listmenu = Menu::where($args1)->orderBy('sort_order','asc')->get();
+         return view('components.main-menu',compact('listmenu'));
     }
 }

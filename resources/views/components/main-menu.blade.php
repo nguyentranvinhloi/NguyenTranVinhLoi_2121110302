@@ -1,30 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-light  bg-success ">
+{{-- <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">WebSiteName</a>
+      </div>
+      <ul class="nav navbar-nav">
+        @foreach ($listmenu as $rowmenu)
+            <x-menu-item :rowmenu="$rowmenu" />
+        @endforeach
+      </ul>
+    </div>
+  </nav> --}}
+{{-- <link rel="stylesheet" href="{{ asset('assets/css/menu.css') }}"> --}}
 
-    <div class="container justify-content-center justify-content-md-between">
-        <button class="navbar-toggler border py-2 text-white" type="button" data-mdb-toggle="collapse"
-            data-mdb-target="#navbarLeftAlignExample" aria-controls="navbarLeftAlignExample"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="page"
-                        href="/NguyenTranVinhLoi_2121110302/public/">Trang chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/NguyenTranVinhLoi_2121110302/public/san-pham">Tất
-                        cả sản phẩm</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/NguyenTranVinhLoi_2121110302/public/lien-he">Liên
-                        hệ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white"
-                        href="/NguyenTranVinhLoi_2121110302/public/chi-tiet-san-pham/">Chi tiết sản phẩm</a>
-                </li>
+<!-- --------------------------------------------------------------------------------------------- -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        {{-- <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button> --}}
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                @foreach ($listmenu as $rowmenu)
+                    <x-menu-item :rowmenu="$rowmenu" />
+                @endforeach
             </ul>
         </div>
     </div>
