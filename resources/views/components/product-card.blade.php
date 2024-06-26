@@ -35,22 +35,22 @@
         <img src="{{ asset('assets/sp.jpg') }}" height="300px" width="259px" alt="Denim Jeans">
     </a>
     <a class="nav-link" href="{{ route('site.product.detail', ['slug' => $product->slug]) }}">
-        <h3 class="title">{{ $product->name }}</h3>
+        <h4 class="">{{ $product->name }}</h4>
     </a>
     <div class="price_sale">
         <div class="row">
             @if ($product->pricesale > 0 && $product->pricesale < $product->price)
-                <div class="col-9">
+                <div class="col-9 text-danger">
                     {{ number_format($product->pricesale) }}<del>{{ number_format($product->price) }}<sup>vnđ</sup></del>
                 </div>
             @else
-                <div class="col-12">{{ number_format($product->price) }}<sup>vnđ</sup></div>
+                <div class="col-12 text-danger">{{ number_format($product->price) }}<sup>vnđ</sup></div>
             @endif
         </div>
     </div>
 
     <p>{{ $product->detail }}</p>
-    <p><button>Thêm vào giỏ hàng</button></p>
+    {{-- <p><button>Thêm vào giỏ hàng</button></p> --}}
 </div>
 
 {{-- <div class="showcase">

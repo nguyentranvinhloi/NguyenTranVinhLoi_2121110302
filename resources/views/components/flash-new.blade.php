@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="{{ asset('assets/css/ProductStyle.css') }}">
 <!-- --------------------------------------------------------------------------------------------- -->
 <section>
-    <div class="container mt-5">
-        <h2 class=" text-danger ">༺ Sản phẩm mới nhất ༻</h2>
+    <div class="container mt-5 text-center">
+        <h3 class=" text-danger ">༺ Sản phẩm mới nhất ༻</h3>
     </div>
 </section>
 <section>

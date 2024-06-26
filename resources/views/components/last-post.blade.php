@@ -4,7 +4,7 @@
 <section class="mt-5 mb-4 text-center">
     <div class="container text-dark">
       <header class="mb-4">
-        <h3>Bài viết mới nhất</h3>
+        <h3 class=" text-danger ">༺ Sản phẩm mới nhất ༻</h3>
       </header>
       @foreach ($post_new as $post)
       <div class="container mt-3">

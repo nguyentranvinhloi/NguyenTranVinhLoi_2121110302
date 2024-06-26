@@ -2,6 +2,7 @@
 @section('title', 'Chi tiết sản phẩm')
 @section('header')
     <link rel="stylesheet" href="Product_detail.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection
 
 @section('content')
@@ -29,7 +30,7 @@
                                         <span class="text-danger"></span><s>{{ $product->price }} vnđ</s></span>
                                     </div>
                                 @else
-                                    <p class="card-text"><span class="h5">{{ $product->price }} vnđ</span> <span
+                                    <p class="card-text"><span class="h5">{{ number_format($product->price) }} vnđ</span> <span
                                             class="text-muted">/cái</span> </p>
                                 @endif
                             </div>
@@ -38,25 +39,23 @@
                             </p>
                             <hr />
                             <div class="row mb-4">
-                                <div class="col-md-4 col-6">
+                                {{-- <div class="col-md-4 col-6">
                                     <label class="mb-2">Kích thước</label>
                                     <select class="form-select border border-secondary" style="height: 35px;">
                                         <option>S</option>
                                         <option>M</option>
                                         <option>L</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="input-group mt-5 mb-3">
                                     <label class="mb-2 d-block me-2">Số lượng</label>
                                     <input type="number" value="1" min="0" max="10"
-                                        aria-describedby="basic-addon2">
+                                        aria-describedby="basic-addon2" id="qty">
                                 </div>
                             </div>
-                            <a href="#" class="btn btn-warning shadow-0"> Mua ngay </a>
-                            <a href="#" class="btn btn-success shadow-0"> <i class="me-1 fa fa-shopping-basket"></i>
-                                Thêm
-                                vào giỏ hàng
-                            </a>
+                            <button class="input-group-text btn btn-success" onclick="handleAddCart({{$product->id}})">
+                                Thêm vào giỏ hàng
+                            </button>
                             {{-- <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i
                                 class="me-1 fa fa-heart fa-lg"></i> Thêm vào danh sách yêu thích </a> --}}
                         </div>
@@ -221,4 +220,30 @@
             </div>
         </section>
     </section>
+@endsection
+@section('footer')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function handleAddCart(productid)
+        {
+            let qty=document.getElementById("qty").value;
+            $.ajax({
+                url:"{{ route('site.cart.addcart')}}",
+                type:"GET",
+                data:{
+                    productid:productid,
+                    qty:qty
+                },
+                success:function(result,status,xhr){
+                    document.getElementById("showqty").innerHTML=result;
+                    alert("Đã thêm sản phẩm vào giỏ hàng!");
+                },
+                error:function(xhr,status,error)
+                {
+                    alert(error);
+                }
+            })
+           //alert(productid+qty);
+        }
+    </script>
 @endsection

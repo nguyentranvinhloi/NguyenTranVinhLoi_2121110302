@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 
     <title>@yield('title')</title>
 </head>
@@ -30,20 +31,22 @@
                     <img src="{{ asset('assets/logo.png') }}" width="150" height="35" />
                 </a>
             </div>
-            {{-- <div class="col-md-8">
-                   
-                        <a href="#" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center"
-                            target="_blank"> <i class="fa-user"></i>
-
-                        </a>
-                        <a href="#" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center"
-                            target="_blank"> <i class="fas fa-heart m-1 me-md-2"></i>
-                        </a>
-                        <a href="#" class="border rounded py-1 px-3 nav-link d-flex align-items-center"
-                            target="_blank"> <i class="fas fa-shopping-cart m-1 me-md-2"></i>
-                        </a>
-                  
-                </div> --}}
+            <div class="col-md-8">
+                   <ul class="nav justify-content-end">
+                    <li class="nav-item px-2">
+                        @php
+                            $count=count(session('carts',[]));
+                        @endphp
+                       <a class="nav-link" href="{{route('site.cart.index')}}">
+                        Giỏ hàng
+                        <span>
+                            (<span class="" id="showqty">{{$count}}</span>)
+                        </span>
+                       </a>
+                    </li>
+                   </ul>
+                        
+                </div>
         </div>
     </div>
     <div className="mt-3">
@@ -161,7 +164,7 @@
         </div>
     </section> --}}
 
-
+    @yield('footer')
 </body>
 
 </html>

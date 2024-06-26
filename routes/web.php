@@ -1,11 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\MiddleAuth;
 //use App\Http\Controllers\UserController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\ProductController as SanphamController;
 use App\Http\Controllers\frontend\ContactController as LienheController;
 use App\Http\Controllers\frontend\CategoryController as DanhmucController;
+use App\Http\Controllers\frontend\PostController as BaivietController;
+use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\AuthController;
 //Admin
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\BannerController;
@@ -22,13 +26,31 @@ use App\Http\Controllers\Backend\UserController;
 //-----------------------------------------------------------------------------------------------------
 //Home
 Route::get('/',[HomeController::class,'index'])->name('site.home');
-//Product all
-Route::get('/san-pham',[SanphamController::class,"index"])->name('site.product');
-//Product category
-Route::get('/danh-muc/{slug}',[SanphamController::class,"category"])->name('site.product.category');
-//Product detail
-Route::get('/chi-tiet-san-pham/{slug}',[SanphamController::class,"product_detail"])->name('site.product.detail');
+//------------------------------------------------------------------------------------------
+//Contact
 Route::get('/lien-he',[LienheController::class,"index"])->name('site.contact');
+//------------------------------------------------------------------------------------------
+//Product
+Route::get('/san-pham',[SanphamController::class,"index"])->name('site.product');
+Route::get('/danh-muc/{slug}',[SanphamController::class,"category"])->name('site.product.category');
+Route::get('/chi-tiet-san-pham/{slug}',[SanphamController::class,"product_detail"])->name('site.product.detail');
+//------------------------------------------------------------------------------------------
+//Post
+Route::get('/bai-viet',[BaivietController::class,"index"])->name('site.post');
+Route::get('/chu-de/{slug}',[BaivietController::class,"topic"])->name('site.post.topic');
+Route::get('/chi-tiet-bai-viet/{slug}',[BaivietController::class,"post_detail"])->name('site.post.detail');
+//------------------------------------------------------------------------------------------
+//Login
+Route::get('/dang-nhap',[AuthController::class,"getLogin"])->name('website.getlogin');
+Route::post('/dang-nhap',[AuthController::class,"doLogin"])->name('website.dologin');
+//------------------------------------------------------------------------------------------
+//Cart
+Route::get('/gio-hang',[CartController::class,"index"])->name('site.cart.index');
+Route::get('/cart/addcart',[CartController::class,'addcart'])->name('site.cart.addcart');
+Route::post('/cart/update',[CartController::class,"update"])->name('site.cart.update');
+Route::get('/cart/delete/{id}',[CartController::class,"delete"])->name('site.cart.delete');
+Route::post('/ajax-endpoint', [AjaxController::class,"handleAjaxRequest"]);
+//------------------------------------------------------------------------------------------
 
 Route::prefix("admin")->group(function(){
     Route::get('/',[DashboardController::class,"index"])->name('admin.dashboard.index');

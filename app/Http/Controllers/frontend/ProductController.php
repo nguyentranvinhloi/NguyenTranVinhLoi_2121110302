@@ -12,10 +12,11 @@ class ProductController extends Controller
     //Product all
     public function index()
     {
+        $cat=Category::where('status','=',1)->select("id","name","slug")->get();
         $product_all= Product::where('status','=',1)
         ->orderBy('created_at','desc')
-        ->paginate(8);
-        return view("frontend.product",compact('product_all'));
+        ->paginate(9);
+        return view("frontend.product",compact('product_all','cat'));
     }
     //get list category
     public function getlistcategoryid($rowid)
@@ -43,6 +44,7 @@ class ProductController extends Controller
     //Product category
     public function category($slug)
     {
+        $cat=Category::where('status','=',1)->select("id","name","slug")->get();
         $row=Category::where([['status','=',1],['slug','=',$slug]])->select("id","name","slug")->first();
         $listcatid=[];
         if($row!=null)
@@ -52,8 +54,8 @@ class ProductController extends Controller
         $product_category= Product::where('status','=',1)
         ->whereIn('category_id',$listcatid)
         ->orderBy('created_at','desc')
-        ->paginate(8);
-        return view("frontend.product_category",compact('product_category','row'));
+        ->paginate(9);
+        return view("frontend.product_category",compact('product_category','row','cat'));
     }
 
     public function product_detail($slug)

@@ -36,6 +36,7 @@ class PostController extends Controller
     {
         $post = new Post();
         $post->topic_id = $request->topic_id;
+        $post->parent_id = $request->parent_id;
         $post->title = $request->title;
         $post->slug = Str::of($request->title)->slug('-');
         $post->type = $request->type;
@@ -111,6 +112,7 @@ class PostController extends Controller
             //chuyen huong trang va bao
         }
         $post->topic_id = $request->topic_id;
+        $post->parent_id = $request->parent_id;
         $post->title = $request->title;
         $post->slug = Str::of($request->title)->slug('-');
         $post->type = $request->type;
